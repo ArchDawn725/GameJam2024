@@ -21,7 +21,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Vector2 hit_Velocity;
     [SerializeField] Vector2 death_Velocity;
+    [SerializeField] Vector2 level_End_Velocity;
+    [SerializeField] float bounce_Pad_Velocity;
     [SerializeField] Vector2 max_Velocity;
+
 
     [SerializeField] float immunityTime;
 
@@ -115,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
         Invoke("RestartLevel", 1);
     }
     private void RestartLevel() { SceneManager.LoadScene(currentScene); }
-    private void NextLevel() { SceneManager.LoadScene(currentScene + 1); }
+    private void NextLevel() { rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + level_End_Velocity.x, rigidbody2D.velocity.y + level_End_Velocity.y); SceneManager.LoadScene(currentScene + 1); }
     private void FirstLevel() { SceneManager.LoadScene(0); }
     private void Heal() { health++; if (health > MAX_HEALTH) { health = MAX_HEALTH; } }
     private void OneUp() { print("Life UP"); }
@@ -123,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Exit")
         {
+            collision.GetComponent<Animator>().SetTrigger("Trigger");
             NextLevel();
         }
         if (collision.gameObject.tag == "Meat") { Heal(); Destroy(collision.gameObject); }
@@ -132,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "BouncePad")
         {
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y + bounce_Pad_Velocity);
             Debug.Log(collision.gameObject.name);
         }
     }
