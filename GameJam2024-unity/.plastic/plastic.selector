@@ -1,0 +1,4 @@
+repository "GameJam2024@local"
+  path "/"
+    br "/main"
+    co "/main"
