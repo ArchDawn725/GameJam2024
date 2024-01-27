@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 7228214943237628643}
   - component: {fileID: 5468527544018219944}
   - component: {fileID: 8307197247292943634}
+  - component: {fileID: 8672740265867629430}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -180,6 +181,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement_Speed: 10
   jump_Speed: 15
+  climb_Speed: 0
+  death_Velocity: {x: 0, y: 0}
 --- !u!50 &7228214943237628643
 Rigidbody2D:
   serializedVersion: 4
@@ -272,3 +275,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0.017668098, y: -0.09030357}
   m_Size: {x: 0.69748366, y: 0.81969637}
   m_Direction: 0
+--- !u!95 &8672740265867629430
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905335594864413274}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43896854fad349c4abcfa65d2bcf04ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

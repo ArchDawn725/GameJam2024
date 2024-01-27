@@ -15,9 +15,9 @@ TagManager:
   - Player
   - Enemy
   - Lava
-  - 
-  - 
-  - 
+  - Hazard
+  - Ladder
+  - Bounce
   - 
   - 
   - 
@@ -52,4 +52,13 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3668277689
+    locked: 0
+  - name: Hazard
+    uniqueID: 2284576895
+    locked: 0
+  - name: Ladder
+    uniqueID: 4268335293
+    locked: 0
+  - name: Bounce
+    uniqueID: 3452074733
     locked: 0
