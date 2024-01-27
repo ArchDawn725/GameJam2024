@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         currentScene = SceneManager.GetActiveScene().buildIndex;
         rigidbody2D = GetComponent<Rigidbody2D>();
         starting_Gravity = rigidbody2D.gravityScale;
-        animator = GetComponent<Animator>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
@@ -63,11 +63,11 @@ public class PlayerMovement : MonoBehaviour
     private void ClimbLadder()
     {
         if (isDead) { return; }
-        if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) { rigidbody2D.gravityScale = starting_Gravity; animator.SetBool("Climbing", IsPlayerMoving()); return; }
+        if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) { rigidbody2D.gravityScale = starting_Gravity; animator.SetBool("Climbing", false); return; }
         rigidbody2D.gravityScale = 0;
         Vector2 climbVelocity = new Vector2(rigidbody2D.velocity.x, moveInput.y * climb_Speed);
         rigidbody2D.velocity = climbVelocity;
-        animator.SetBool("Climbing", IsPlayerMoving());
+        animator.SetBool("Climbing", IsPlayerClimbing());
     }
     private void FlipSprite()
     {
