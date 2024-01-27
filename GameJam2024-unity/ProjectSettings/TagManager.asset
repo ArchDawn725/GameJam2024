@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - BouncePad
+  - Exit
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Hazard
   - Ladder
   - Bounce
-  - 
+  - Collectable
   - 
   - 
   - 
@@ -61,4 +63,7 @@ TagManager:
     locked: 0
   - name: Bounce
     uniqueID: 3452074733
+    locked: 0
+  - name: Collectable
+    uniqueID: 1482022825
     locked: 0

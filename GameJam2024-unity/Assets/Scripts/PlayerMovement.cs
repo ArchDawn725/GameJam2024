@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private CapsuleCollider2D capsuleCollider;
     private BoxCollider2D boxCollider;
     private Animator animator;
+    private const int MAX_HEALTH = 3;
 
     private Vector2 moveInput;
 
@@ -17,11 +18,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jump_Speed;
     [SerializeField] float climb_Speed;
 
+    [SerializeField] Vector2 hit_Velocity;
     [SerializeField] Vector2 death_Velocity;
+    [SerializeField] Vector2 max_Velocity;
 
     private bool isDead;
     private int currentScene;
     private float starting_Gravity;
+    private float health;
 
     private void Start()
     {
@@ -31,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         animator = transform.GetChild(0).GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+        health = MAX_HEALTH;
     }
     private void Update()
     {
@@ -38,7 +43,8 @@ public class PlayerMovement : MonoBehaviour
         Movement();
         FlipSprite();
         ClimbLadder();
-        Death();
+        Hit();
+        MaxVelocity();
     }
     private void OnMove(InputValue value)
     {
@@ -81,21 +87,48 @@ public class PlayerMovement : MonoBehaviour
     {
         return Mathf.Abs(rigidbody2D.velocity.y) > Mathf.Epsilon;
     }
-    private void Death()
+    private void Hit()
     {
         if (capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")) || capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Hazard")))
         {
-            isDead = true;
-            animator.SetTrigger("Dead");
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + death_Velocity.x, rigidbody2D.velocity.y + death_Velocity.y);
-            Invoke("RestartLevel", 1);
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + hit_Velocity.x, rigidbody2D.velocity.y + hit_Velocity.y);
+            health--;
         }
+        if (health <= 0) { Death(); }
+    }
+    private void Death()
+    {
+        isDead = true;
+        animator.SetTrigger("Dead");
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + death_Velocity.x, rigidbody2D.velocity.y + death_Velocity.y);
+        Invoke("RestartLevel", 1);
     }
     private void RestartLevel() { SceneManager.LoadScene(currentScene); }
     private void NextLevel() { SceneManager.LoadScene(currentScene + 1); }
     private void FirstLevel() { SceneManager.LoadScene(0); }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        if (collision.gameObject.tag == "Exit")
+        {
+            NextLevel();
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "BouncePad")
+        {
+            Debug.Log(collision.gameObject.name);
+        }
+    }
+    private void MaxVelocity()
+    {
+        if(rigidbody2D.velocity.x > max_Velocity.x)
+        {
+            rigidbody2D.velocity = new Vector2(max_Velocity.x, rigidbody2D.velocity.y);
+        }
+        if (rigidbody2D.velocity.y > max_Velocity.y)
+        {
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.y, max_Velocity.x);
+        }
     }
 }
