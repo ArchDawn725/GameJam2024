@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(ImmunityTime());
             }
         }
-        if (capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Lava"))) { health = 0; }
+        if (capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Lava"))) { health--; }
         if (health <= 0) { Death(); }
 
     }
