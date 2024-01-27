@@ -11,13 +11,13 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Player
+  - Enemy
+  - Lava
+  - Hazard
+  - Ladder
+  - Bounce
   - 
   - 
   - 
@@ -40,4 +40,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 2546534019
+    locked: 0
+  - name: Ground
+    uniqueID: 2968144269
+    locked: 0
+  - name: Lava
+    uniqueID: 2043594863
+    locked: 0
+  - name: Player
+    uniqueID: 3668277689
+    locked: 0
+  - name: Hazard
+    uniqueID: 2284576895
+    locked: 0
+  - name: Ladder
+    uniqueID: 4268335293
+    locked: 0
+  - name: Bounce
+    uniqueID: 3452074733
     locked: 0
