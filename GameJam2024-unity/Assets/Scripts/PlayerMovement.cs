@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDead;
     private int currentScene;
     private float starting_Gravity;
-    private float health;
+    private int health;
 
     private void Start()
     {
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
     private void ClimbLadder()
     {
         if (isDead) { return; }
-        if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) { rigidbody2D.gravityScale = starting_Gravity; animator.SetBool("Climbing", false); return; }
+        if (!capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ladder"))) { rigidbody2D.gravityScale = starting_Gravity; animator.SetBool("Climbing", false); return; }
         rigidbody2D.gravityScale = 0;
         Vector2 climbVelocity = new Vector2(rigidbody2D.velocity.x, moveInput.y * climb_Speed);
         rigidbody2D.velocity = climbVelocity;
@@ -94,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + hit_Velocity.x, rigidbody2D.velocity.y + hit_Velocity.y);
             health--;
         }
+        if (capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Lava"))) { health = 0; }
         if (health <= 0) { Death(); }
     }
     private void Death()
@@ -106,12 +107,16 @@ public class PlayerMovement : MonoBehaviour
     private void RestartLevel() { SceneManager.LoadScene(currentScene); }
     private void NextLevel() { SceneManager.LoadScene(currentScene + 1); }
     private void FirstLevel() { SceneManager.LoadScene(0); }
+    private void Heal() { health++; if (health > MAX_HEALTH) { health = MAX_HEALTH; } }
+    private void OneUp() { print("Life UP"); }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Exit")
         {
             NextLevel();
         }
+        if (collision.gameObject.tag == "Meat") { Heal(); Destroy(collision.gameObject); }
+        if (collision.gameObject.tag == "DinoNuggie") { OneUp(); Destroy(collision.gameObject); }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
