@@ -6,6 +6,8 @@ TagManager:
   tags:
   - BouncePad
   - Exit
+  - Meat
+  - DinoNuggie
   layers:
   - Default
   - TransparentFX
@@ -49,21 +51,21 @@ TagManager:
   - name: Ground
     uniqueID: 2968144269
     locked: 0
+  - name: Collectable
+    uniqueID: 1482022825
+    locked: 0
+  - name: Hazard
+    uniqueID: 2284576895
+    locked: 0
+  - name: Bounce
+    uniqueID: 3452074733
+    locked: 0
+  - name: Ladder
+    uniqueID: 4268335293
+    locked: 0
   - name: Lava
     uniqueID: 2043594863
     locked: 0
   - name: Player
     uniqueID: 3668277689
-    locked: 0
-  - name: Hazard
-    uniqueID: 2284576895
-    locked: 0
-  - name: Ladder
-    uniqueID: 4268335293
-    locked: 0
-  - name: Bounce
-    uniqueID: 3452074733
-    locked: 0
-  - name: Collectable
-    uniqueID: 1482022825
     locked: 0
