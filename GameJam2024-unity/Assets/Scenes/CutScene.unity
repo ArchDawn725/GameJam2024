@@ -246,6 +246,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &202460182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 202460183}
+  - component: {fileID: 202460184}
+  m_Layer: 0
+  m_Name: LevelChangeOnActivate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &202460183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202460182}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 443308235}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &202460184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202460182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd33116b465a8649b181de804011343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &271805958
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +641,8 @@ Transform:
   - {fileID: 784651593}
   - {fileID: 723451932}
   - {fileID: 58591956}
+  - {fileID: 1542849789}
+  - {fileID: 202460183}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &475001713
@@ -717,7 +763,7 @@ GameObject:
   - component: {fileID: 528215937}
   - component: {fileID: 528215936}
   m_Layer: 0
-  m_Name: Square
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1079,7 +1125,7 @@ Transform:
   m_GameObject: {fileID: 967245836}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.93, y: -1.98, z: 0}
+  m_LocalPosition: {x: -2.15, y: -1.2, z: 0}
   m_LocalScale: {x: 0.4141406, y: 0.4141406, z: 0.4141406}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1389,6 +1435,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1542849789 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5076883472203330953, guid: c848707ad749f3b4396b53ee77f9aac2, type: 3}
+  m_PrefabInstance: {fileID: 2395851378799537373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1585749780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,15 +1871,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 443308235}
     m_Modifications:
+    - target: {fileID: 2463190360442197139, guid: c848707ad749f3b4396b53ee77f9aac2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5076883472203330953, guid: c848707ad749f3b4396b53ee77f9aac2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.22
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5076883472203330953, guid: c848707ad749f3b4396b53ee77f9aac2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.19
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5076883472203330953, guid: c848707ad749f3b4396b53ee77f9aac2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1862,6 +1917,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -52.361
       objectReference: {fileID: 0}
+    - target: {fileID: 5076883472203330953, guid: c848707ad749f3b4396b53ee77f9aac2, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7136786277447597390, guid: c848707ad749f3b4396b53ee77f9aac2, type: 3}
       propertyPath: m_Name
       value: FireRock_0
@@ -1879,4 +1938,3 @@ SceneRoots:
   - {fileID: 528215938}
   - {fileID: 1868494774}
   - {fileID: 443308235}
-  - {fileID: 2395851378799537373}

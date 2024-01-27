@@ -25,7 +25,7 @@ public class BossPlayer : MonoBehaviour
     void FixedUpdate()
     {
         transform.rotation *= Quaternion.Euler(0, 0, rotation * rotationSpeed * Time.fixedDeltaTime);
-        transform.position += (transform.rotation * (Vector3)velocity) * Time.fixedDeltaTime;
+        transform.position += (velocity) * Time.fixedDeltaTime;
     }
 
     void getInput()
@@ -33,6 +33,8 @@ public class BossPlayer : MonoBehaviour
         var deltaVelocity = new Vector2(0, Input.GetAxis("Vertical") * speed * Time.deltaTime);
         velocity += transform.rotation * deltaVelocity;
         velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
+        if (Input.GetAxis("Vertical") == 0)
+            velocity *= 0.99f;
         rotation = Input.GetAxis("Horizontal");
     }
 }
