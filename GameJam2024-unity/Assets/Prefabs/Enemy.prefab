@@ -140,8 +140,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0070570707, y: -0.009879708}
-  m_Size: {x: 0.45765805, y: 1.0197594}
+  m_Offset: {x: -0.0070570707, y: -0.24651709}
+  m_Size: {x: 0.45765805, y: 0.54648465}
   m_Direction: 0
 --- !u!114 &8865409068620712427
 MonoBehaviour:
@@ -166,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2891198996425736467}
   - component: {fileID: 5122833542327773743}
-  - component: {fileID: 8616093474264303071}
+  - component: {fileID: 2161749574497635200}
   m_Layer: 8
   m_Name: Square
   m_TagString: Untagged
@@ -183,7 +183,7 @@ Transform:
   m_GameObject: {fileID: 6691192894883605926}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.07, z: 0.0014608863}
+  m_LocalPosition: {x: 0, y: -0.333, z: 0.0014608863}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -230,7 +230,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 958209579, guid: 26949e25d28a40142aa4e662a5c7c53a, type: 3}
+  m_Sprite: {fileID: -1095033279, guid: 714798ab1d51ac247b6bc43a4c100c63, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -241,7 +241,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8616093474264303071
+--- !u!95 &2161749574497635200
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -251,7 +251,7 @@ Animator:
   m_GameObject: {fileID: 6691192894883605926}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: af0e30f790464ce4aa67a485a7435058, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2ba799ad84dd819489b6a8b79367daa5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
