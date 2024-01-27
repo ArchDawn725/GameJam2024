@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -22,10 +23,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 death_Velocity;
     [SerializeField] Vector2 max_Velocity;
 
+    [SerializeField] float immunityTime;
+
     private bool isDead;
     private int currentScene;
     private float starting_Gravity;
-    private int health;
+    [SerializeField] private int health;
+    private bool immunity;
 
     private void Start()
     {
@@ -89,13 +93,19 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Hit()
     {
-        if (capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")) || capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Hazard")))
+        if (!immunity)
         {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + hit_Velocity.x, rigidbody2D.velocity.y + hit_Velocity.y);
-            health--;
+            if (capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")) || capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Hazard")))
+            {
+                print("Hit");
+                rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + hit_Velocity.x, rigidbody2D.velocity.y + hit_Velocity.y);
+                health--;
+                StartCoroutine(ImmunityTime());
+            }
         }
         if (capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Lava"))) { health = 0; }
         if (health <= 0) { Death(); }
+
     }
     private void Death()
     {
@@ -135,5 +145,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.y, max_Velocity.x);
         }
+    }
+    private IEnumerator ImmunityTime()
+    {
+        immunity = true;
+        yield return new WaitForSeconds(immunityTime);
+        immunity = false;
     }
 }
