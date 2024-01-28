@@ -1323,6 +1323,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_Lives: 5
+  lastPlayerDeath: {x: 0, y: 0}
+  oil: {fileID: 0}
 --- !u!4 &587305828
 Transform:
   m_ObjectHideFlags: 0
@@ -1630,14 +1632,6 @@ PrefabInstance:
     - target: {fileID: 4791358078719624547, guid: 178a4184f89829245bc81c60a3a6224b, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791358078719624547, guid: 178a4184f89829245bc81c60a3a6224b, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791358078719624547, guid: 178a4184f89829245bc81c60a3a6224b, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4791358078719624547, guid: 178a4184f89829245bc81c60a3a6224b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2868,14 +2862,6 @@ PrefabInstance:
     - target: {fileID: 4791358078719624547, guid: 178a4184f89829245bc81c60a3a6224b, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791358078719624547, guid: 178a4184f89829245bc81c60a3a6224b, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791358078719624547, guid: 178a4184f89829245bc81c60a3a6224b, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4791358078719624547, guid: 178a4184f89829245bc81c60a3a6224b, type: 3}
       propertyPath: m_LocalPosition.x
