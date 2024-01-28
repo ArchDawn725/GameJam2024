@@ -19,7 +19,11 @@ public class UIController : MonoBehaviour
     }
     public void UpdateLives(int currentLives)
     {
-        for(int i = 0; i < LivesController.Instance.player_Lives; i++)
+        foreach (Transform child in lifeTransform)
+        {
+            Destroy(child.gameObject);
+        }
+        for (int i = 0; i < LivesController.Instance.player_Lives; i++)
         {
             GainLife();
         }

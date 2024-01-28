@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 464621470435924657}
   - component: {fileID: 7349756748315894432}
   - component: {fileID: 8886026416916317179}
-  - component: {fileID: 3803460914894757015}
+  - component: {fileID: 4725315235904495755}
   m_Layer: 12
   m_Name: BouncePad
   m_TagString: BouncePad
@@ -160,7 +160,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1623127138, guid: b9df24ceb18f3324d87aedbaae3eaac5, type: 3}
+  m_Sprite: {fileID: 16384751, guid: ae42743c1cc985b41a7db95c8b6dbe8c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -206,7 +206,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.022974733, y: -0.014897405}
   m_Size: {x: 1.1045464, y: 0.6973607}
   m_Direction: 1
---- !u!95 &3803460914894757015
+--- !u!95 &4725315235904495755
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ Animator:
   m_GameObject: {fileID: 8724346461928011363}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7436c34e6a6e11f4a86277d18f5de573, type: 2}
+  m_Controller: {fileID: 9100000, guid: bc60eae1edb9f4843a4566425ef46845, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
