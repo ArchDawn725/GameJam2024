@@ -203,11 +203,13 @@ MonoBehaviour:
   movement_Speed: 10
   jump_Speed: 15
   climb_Speed: 5
-  hit_Velocity: {x: 0, y: 10}
-  death_Velocity: {x: 100, y: 100}
-  max_Velocity: {x: 15, y: 60}
-  immunityTime: 0
-  health: 0
+  hit_Velocity: {x: 0, y: 15}
+  death_Velocity: {x: 0, y: 100}
+  level_End_Velocity: {x: 100, y: 100}
+  bounce_Pad_Velocity: 45
+  max_Velocity: {x: 15, y: 45}
+  immunityTime: 1
+  health: 3
 --- !u!50 &7228214943237628643
 Rigidbody2D:
   serializedVersion: 4
