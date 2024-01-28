@@ -10,10 +10,10 @@ public class UIController : MonoBehaviour
 
     public void UpdateHealth(int currentHealth)
     {
-        if (currentHealth >= 4) { healthIcons[2].SetActive(true); healthIcons[1].SetActive(true); healthIcons[0].SetActive(true); }
-        if (currentHealth == 3) { healthIcons[2].SetActive(false); healthIcons[1].SetActive(true); healthIcons[0].SetActive(true); }
-        if (currentHealth == 2) { healthIcons[2].SetActive(false); healthIcons[1].SetActive(false); healthIcons[0].SetActive(true); }
-        if (currentHealth == 1) { healthIcons[2].SetActive(false); healthIcons[1].SetActive(false); healthIcons[0].SetActive(false); }
+        if (currentHealth >= 3) { healthIcons[2].SetActive(true); healthIcons[1].SetActive(true); healthIcons[0].SetActive(true); }
+        if (currentHealth == 2) { healthIcons[2].SetActive(false); healthIcons[1].SetActive(true); healthIcons[0].SetActive(true); }
+        if (currentHealth == 1) { healthIcons[2].SetActive(false); healthIcons[1].SetActive(false); healthIcons[0].SetActive(true); }
+        if (currentHealth == 0) { healthIcons[2].SetActive(false); healthIcons[1].SetActive(false); healthIcons[0].SetActive(false); }
     }
     public void UpdateLives(int currentLives)
     {

@@ -101,9 +101,9 @@ public class PlayerMovement : MonoBehaviour
         {
             if (capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")) || capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Hazard")))
             {
-                UIController.Instance.UpdateHealth(health);
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + hit_Velocity.x, rigidbody2D.velocity.y + hit_Velocity.y);
                 health--;
+                UIController.Instance.UpdateHealth(health);
                 StartCoroutine(ImmunityTime());
             }
         }
