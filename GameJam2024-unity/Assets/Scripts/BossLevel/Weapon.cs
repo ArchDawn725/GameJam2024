@@ -7,6 +7,12 @@ public class Weapon : MonoBehaviour
 {
     public float maxSize = 1, minSize = 0.1f;
     bool swinging = false;
+
+    void Start()
+    {
+        SwingWeapon();
+    }
+
     IEnumerator Swing()
     {
         swinging = true;
@@ -39,7 +45,7 @@ public class Weapon : MonoBehaviour
     {
         Debug.Log(string.Format("Collision with {0}", collision.gameObject.name));
         var hit = collision.gameObject.GetComponent<AstroidController>();
-        if ( hit!= null)
+        if ( hit!= null && swinging)
         {
             hit.OnHit();
         }
