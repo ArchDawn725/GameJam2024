@@ -34,6 +34,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int health;
     private bool immunity;
 
+    //audio
+    [SerializeField] AudioSource running_Audio;
+    [SerializeField] AudioSource hit_Audio;
+    [SerializeField] AudioSource death_Audio;
+    [SerializeField] AudioSource eating_Audio;
+    [SerializeField] AudioSource boing_Audio;
+    [SerializeField] AudioSource jump_Audio;
+
     private void Start()
     {
         currentScene = SceneManager.GetActiveScene().buildIndex;
@@ -66,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         if (value.isPressed)
         {
             rigidbody2D.velocity += new Vector2(0, jump_Speed);
+            jump_Audio.Play();
         }
     }
     private void Movement()
@@ -73,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
         Vector2 playerVelocity = new Vector2(moveInput.x * movement_Speed, rigidbody2D.velocity.y);
         rigidbody2D.velocity = playerVelocity;
         animator.SetBool("Moving", IsPlayerMoving());
+        if (IsPlayerMoving()) { running_Audio.gameObject.SetActive(true); }
+        else { running_Audio.gameObject.SetActive(false); }
     }
     private void ClimbLadder()
     {
@@ -101,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")) || capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Hazard")))
             {
+                hit_Audio.Play();
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + hit_Velocity.x, rigidbody2D.velocity.y + hit_Velocity.y);
                 health--;
                 UIController.Instance.UpdateHealth(health);
@@ -113,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Death()
     {
+        death_Audio.Play();
         isDead = true;
         animator.SetTrigger("Dead");
         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + death_Velocity.x, rigidbody2D.velocity.y + death_Velocity.y);
@@ -124,12 +137,13 @@ public class PlayerMovement : MonoBehaviour
     private void RestartLevel() { SceneManager.LoadScene(currentScene); }
     private void NextLevel() {  SceneManager.LoadScene(currentScene + 1); }
     private void FirstLevel() { SceneManager.LoadScene(0); }
-    private void Heal() { health++; if (health > MAX_HEALTH) { health = MAX_HEALTH; } UIController.Instance.UpdateHealth(health); }
+    private void Heal() { eating_Audio.Play(); health++; if (health > MAX_HEALTH) { health = MAX_HEALTH; } UIController.Instance.UpdateHealth(health); }
     private void OneUp() { LivesController.Instance.player_Lives++; UIController.Instance.GainLife(); }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Exit")
         {
+            death_Audio.Play();
             if (collision.gameObject.GetComponent<Animator>() != null) { collision.GetComponent<Animator>().SetTrigger("Trigger"); }
             max_Velocity = level_End_Velocity;
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + level_End_Velocity.x, rigidbody2D.velocity.y + level_End_Velocity.y);
@@ -142,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "BouncePad")
         {
+            boing_Audio.Play();
             if (collision.gameObject.GetComponent<Animator>() != null) { collision.gameObject.GetComponent<Animator>().SetTrigger("Trigger"); }     
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y + bounce_Pad_Velocity);
         }
