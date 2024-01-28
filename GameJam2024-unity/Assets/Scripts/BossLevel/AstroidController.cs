@@ -9,6 +9,15 @@ public class AstroidController : MonoBehaviour
     Transform player;
     public AudioClip breakSound;
     BossController bossController;
+    Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        if (animator != null)
+            animator.SetBool("Special", Random.Range(0, 10) > 8);
+    }
+
     void OnEnable()
     {
         transform.localScale = Vector3.one * (Size/5.0f);

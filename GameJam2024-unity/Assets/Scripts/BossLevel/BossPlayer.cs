@@ -67,6 +67,8 @@ public class BossPlayer : MonoBehaviour
         }
         transform.position = Vector3.zero;
         velocity = Vector3.zero;
+        health = 3;
+        UIController.Instance.UpdateHealth(health);
         gameObject.GetComponent<ScreenFlipper>().enabled = true;
 
         
