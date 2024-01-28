@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class UIController : MonoBehaviour
 {
     public static UIController Instance { get; private set; }
@@ -26,4 +28,5 @@ public class UIController : MonoBehaviour
     {
         Instantiate(lifeIcon, lifeTransform);
     }
+    public void ExitGame() { SceneManager.LoadScene(0); }
 }
