@@ -12,11 +12,12 @@ public class BossPlayer : MonoBehaviour
     public AudioClip owSound;
     public GameObject deadPrefab;
     
+    [SerializeField] int health = 3;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        UIController.Instance.UpdateHealth(health);
     }
 
     void Update()
@@ -36,27 +37,58 @@ public class BossPlayer : MonoBehaviour
         velocity += transform.rotation * deltaVelocity;
         velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
         if (Input.GetAxis("Vertical") == 0)
-            velocity *= 0.99f;
+            {
+            Vector2 directionToCenter =( Vector2.zero - (Vector2)transform.position).normalized * 0.05f;
+            velocity = Vector2.Lerp(velocity, directionToCenter , 0.01f);
+            }
         rotation = Input.GetAxis("Horizontal");
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(owSound != null)
-            AudioSource.PlayClipAtPoint(owSound, transform.position);
-        if(deadPrefab != null)
-            Instantiate(deadPrefab, transform.position, transform.rotation);
-        StartCoroutine(Respawn());
+        var hitObj = collision.gameObject.GetComponent<AstroidController>();
+        if(hitObj != null)
+        {
+            hitObj.OnHit();
+            TakeDamage();
+        }
     }
 
     IEnumerator Respawn()
     {
+
+
         gameObject.GetComponent<ScreenFlipper>().enabled = false;
         gameObject.transform.position = new Vector3(-5000,0,-20);
         yield return new WaitForSeconds(1);
+        if(LivesController.Instance.player_Lives <= 0)
+        {
+            UIController.Instance.GameOver();
+            yield break;
+        }
         transform.position = Vector3.zero;
         velocity = Vector3.zero;
+        health = 3;
+        UIController.Instance.UpdateHealth(health);
         gameObject.GetComponent<ScreenFlipper>().enabled = true;
+
+        
+    }
+
+    public void TakeDamage()
+    {
+        if(owSound != null)
+            AudioSource.PlayClipAtPoint(owSound, transform.position);
+        health--;
+        UIController.Instance.UpdateHealth(health);
+        if(health <= 0)
+        {
+            if(deadPrefab != null)
+                Instantiate(deadPrefab, transform.position, transform.rotation);
+                    LivesController.Instance.player_Lives--;
+            LivesController.Instance.UpdateUILives();
+            StartCoroutine(Respawn());
+        }
     }
 
 }
