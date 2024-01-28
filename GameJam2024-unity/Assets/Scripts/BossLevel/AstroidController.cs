@@ -6,11 +6,12 @@ public class AstroidController : MonoBehaviour
 {
     public int Size = 5;
     public float rotation = 10f;
-
+    Transform player;
     public AudioClip breakSound;
     void OnEnable()
     {
         transform.localScale = Vector3.one * (Size/5.0f);
+        player = GameObject.FindObjectOfType<BossPlayer>().transform;
     }
 
     void Update()
@@ -22,10 +23,13 @@ public class AstroidController : MonoBehaviour
 
     public void OnHit()
     {
+        var playerPos = player.position;
+        var astroidPos = transform.position;
+        var direction = (playerPos - astroidPos).normalized * -2;
         if(Size > 1)
         {
-            var astroid1 = Instantiate(gameObject, transform.position + (Vector3.right * 2), Quaternion.identity);
-            var astroid2 = Instantiate(gameObject, transform.position + (Vector3.left * 2), Quaternion.identity);
+            var astroid1 = Instantiate(gameObject, transform.position + direction + (Vector3.right * 2), Quaternion.identity);
+            var astroid2 = Instantiate(gameObject, transform.position + direction + (Vector3.left * 2), Quaternion.identity);
             astroid1.GetComponent<AstroidController>().Size = Size - 1;
             astroid2.GetComponent<AstroidController>().Size = Size - 1;
             astroid1.GetComponent<AstroidController>().rotation = rotation+45;
