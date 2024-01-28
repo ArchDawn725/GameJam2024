@@ -25,6 +25,10 @@ public class AstroidController : MonoBehaviour
         bossController = GameObject.FindObjectOfType<BossController>();
         bossController.AddAstroid();
     }
+    void OnDisable()
+    {
+        bossController.RemoveAstroid();
+    }
 
     void Update()
     {
@@ -47,9 +51,10 @@ public class AstroidController : MonoBehaviour
             astroid1.GetComponent<AstroidController>().rotation = rotation+45;
             astroid2.GetComponent<AstroidController>().rotation = rotation-45;
         }
-        Destroy(gameObject);
-        bossController.RemoveAstroid();
+    
         AudioSource.PlayClipAtPoint(breakSound, transform.position);
+        Destroy(gameObject);
+
     }
     
 }
