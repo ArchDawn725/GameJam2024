@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void RestartLevel() { SceneManager.LoadScene(currentScene); }
     private void NextLevel() {  SceneManager.LoadScene(currentScene + 1); }
-    private void FirstLevel() { SceneManager.LoadScene(0); }
+    private void FirstLevel() { UIController.Instance.GameOver(); }// SceneManager.LoadScene(0); }
     private void Heal() { eating_Audio.Play(); health++; if (health > MAX_HEALTH) { health = MAX_HEALTH; } UIController.Instance.UpdateHealth(health); }
     private void OneUp() { if (!immunity) { ImmunityTime(); Debug.Log("Got"); LivesController.Instance.player_Lives++; UIController.Instance.GainLife(); } }
     private void OnTriggerEnter2D(Collider2D collision)
