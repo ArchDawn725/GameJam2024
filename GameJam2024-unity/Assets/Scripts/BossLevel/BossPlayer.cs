@@ -63,7 +63,8 @@ public class BossPlayer : MonoBehaviour
         yield return new WaitForSeconds(1);
         if(LivesController.Instance.player_Lives <= 0)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            UIController.Instance.GameOver();
+            yield break;
         }
         transform.position = Vector3.zero;
         velocity = Vector3.zero;

@@ -1000,10 +1000,10 @@ MonoBehaviour:
   OnBossDefeated:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1997235382}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1997235383}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: GameOver
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1342,11 +1342,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1 &1997235382 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7542159382799463706, guid: e2a14a15dad42f6459b16c9544afcb94, type: 3}
+--- !u!114 &1997235383 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3066230546071806704, guid: e2a14a15dad42f6459b16c9544afcb94, type: 3}
   m_PrefabInstance: {fileID: 1677695894}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6d82f839183ec45a8063134d6c7d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2055724042
 PrefabInstance:
   m_ObjectHideFlags: 0
