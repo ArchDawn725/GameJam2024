@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 level_End_Velocity;
     [SerializeField] float bounce_Pad_Velocity;
     [SerializeField] Vector2 max_Velocity;
+    [SerializeField] float max_Fall_Velocity = -10f;
 
 
     [SerializeField] float immunityTime;
@@ -158,6 +159,15 @@ public class PlayerMovement : MonoBehaviour
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y + bounce_Pad_Velocity);
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "BouncePad")
+        {
+            boing_Audio.Play();
+            if (collision.gameObject.GetComponent<Animator>() != null) { collision.gameObject.GetComponent<Animator>().SetTrigger("Trigger"); }
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y + bounce_Pad_Velocity);
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "BouncePad")
@@ -175,7 +185,12 @@ public class PlayerMovement : MonoBehaviour
         }
         if (rigidbody2D.velocity.y > max_Velocity.y)
         {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.y, max_Velocity.x);
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, max_Velocity.x);
+        }
+
+        if (rigidbody2D.velocity.y < max_Fall_Velocity)
+        {
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, max_Fall_Velocity);
         }
     }
     private IEnumerator ImmunityTime()
