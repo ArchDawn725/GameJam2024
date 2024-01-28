@@ -4,9 +4,12 @@ public class FireBall : MonoBehaviour
 {
     public Vector3 target;
     [SerializeField] private float speed;
+    Animator animator;
+    [SerializeField] float spawn_Item_Chance;
     private void Start()
     {
         target = FindObjectOfType<PlayerMovement>().transform.position;
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -24,6 +27,13 @@ public class FireBall : MonoBehaviour
     }
     private void Explode()
     {
+        animator.SetTrigger("Trigger");
+        transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+        if (UnityEngine.Random.Range(0, 100) <= spawn_Item_Chance) { SpawnItem(); }
         Destroy(gameObject, 1);
+    }
+    private void SpawnItem()
+    {
+
     }
 }
