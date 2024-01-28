@@ -115,10 +115,13 @@ public class PlayerMovement : MonoBehaviour
         isDead = true;
         animator.SetTrigger("Dead");
         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + death_Velocity.x, rigidbody2D.velocity.y + death_Velocity.y);
-        Invoke("RestartLevel", 1);
+        LivesController.Instance.player_Lives--;
+
+        if (LivesController.Instance.player_Lives > 0) { Invoke("RestartLevel", 1); }
+        else { Destroy(LivesController.Instance.gameObject); Invoke("FirstLevel", 1); }
     }
     private void RestartLevel() { SceneManager.LoadScene(currentScene); }
-    private void NextLevel() { rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + level_End_Velocity.x, rigidbody2D.velocity.y + level_End_Velocity.y); SceneManager.LoadScene(currentScene + 1); }
+    private void NextLevel() {  SceneManager.LoadScene(currentScene + 1); }
     private void FirstLevel() { SceneManager.LoadScene(0); }
     private void Heal() { health++; if (health > MAX_HEALTH) { health = MAX_HEALTH; } }
     private void OneUp() { print("Life UP"); }
@@ -127,7 +130,8 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Exit")
         {
             collision.GetComponent<Animator>().SetTrigger("Trigger");
-            NextLevel();
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + level_End_Velocity.x, rigidbody2D.velocity.y + level_End_Velocity.y);
+            Invoke("NextLevel", 1);
         }
         if (collision.gameObject.tag == "Meat") { Heal(); Destroy(collision.gameObject); }
         if (collision.gameObject.tag == "DinoNuggie") { OneUp(); Destroy(collision.gameObject); }
@@ -136,8 +140,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "BouncePad")
         {
+            collision.gameObject.GetComponent<Animator>().SetTrigger("Trigger");
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y + bounce_Pad_Velocity);
-            Debug.Log(collision.gameObject.name);
         }
     }
     private void MaxVelocity()
