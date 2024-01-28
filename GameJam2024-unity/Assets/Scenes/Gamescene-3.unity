@@ -3722,10 +3722,10 @@ PrefabInstance:
     - target: {fileID: 5381561662832318806, guid: 5bb8e16b95be0054a9a5abd2b89b0d05, type: 3}
       propertyPath: m_AnimatedTarget
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7665976881051038773}
     - target: {fileID: 5381561662832318806, guid: 5bb8e16b95be0054a9a5abd2b89b0d05, type: 3}
       propertyPath: m_ParentHash.Array.size
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5381561662832318806, guid: 5bb8e16b95be0054a9a5abd2b89b0d05, type: 3}
       propertyPath: m_ChildCameras.Array.size
@@ -52834,6 +52834,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cb233c0b464e9346bea661cdb34cfd5, type: 3}
+--- !u!95 &7665976881051038773 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1021692504190852427, guid: 1cb233c0b464e9346bea661cdb34cfd5, type: 3}
+  m_PrefabInstance: {fileID: 7665976881051038772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
