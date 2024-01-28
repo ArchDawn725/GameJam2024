@@ -12,8 +12,8 @@ public class spinAndDie : MonoBehaviour
     {
         rotationSpeed += rotationAccel * Time.deltaTime;
         transform.rotation *= Quaternion.Euler(0, 0, rotationSpeed * Time.deltaTime);
-        transform.localScale *= 0.999f;
-        Invoke("removeMe",0.95f);
+        transform.localScale *= 0.99f;
+        Invoke("removeMe",1.95f);
     }
 
     void removeMe()
