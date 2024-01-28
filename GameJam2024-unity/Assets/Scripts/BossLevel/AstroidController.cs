@@ -7,6 +7,7 @@ public class AstroidController : MonoBehaviour
     public int Size = 5;
     public float rotation = 10f;
 
+    public AudioClip breakSound;
     void OnEnable()
     {
         transform.localScale = Vector3.one * (Size/5.0f);
@@ -31,6 +32,7 @@ public class AstroidController : MonoBehaviour
             astroid2.GetComponent<AstroidController>().rotation = rotation-45;
         }
         Destroy(gameObject);
+        AudioSource.PlayClipAtPoint(breakSound, transform.position);
     }
     
 }
