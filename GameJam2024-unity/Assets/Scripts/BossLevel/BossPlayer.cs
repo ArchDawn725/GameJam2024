@@ -18,6 +18,7 @@ public class BossPlayer : MonoBehaviour
     void Start()
     {
         UIController.Instance.UpdateHealth(health);
+        LivesController.Instance.UpdateUILives();
     }
 
     void Update()
