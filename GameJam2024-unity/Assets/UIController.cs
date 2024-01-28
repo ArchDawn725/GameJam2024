@@ -10,6 +10,10 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject lifeIcon;
     [SerializeField] Transform lifeTransform;
 
+    [SerializeField] GameObject exitButton;
+    [SerializeField] GameObject LoseMenu;
+    [SerializeField] GameObject WinMenu;
+
     public void UpdateHealth(int currentHealth)
     {
         if (currentHealth >= 3) { healthIcons[2].SetActive(true); healthIcons[1].SetActive(true); healthIcons[0].SetActive(true); }
@@ -35,6 +39,12 @@ public class UIController : MonoBehaviour
     public void ExitGame() { SceneManager.LoadScene(0); }
     public void GameOver()
     {
-
+        exitButton.SetActive(false);
+        LoseMenu.SetActive(true);
+    }
+    public void GameWin()
+    {
+        exitButton.SetActive(false);
+        WinMenu.SetActive(true);
     }
 }

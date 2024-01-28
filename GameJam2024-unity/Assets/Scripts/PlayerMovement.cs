@@ -127,11 +127,11 @@ public class PlayerMovement : MonoBehaviour
     {
         death_Audio.Play();
         isDead = true;
-        animator.SetTrigger("Dead");
+        animator.SetBool("Dead", true);
         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + death_Velocity.x, rigidbody2D.velocity.y + death_Velocity.y);
         LivesController.Instance.player_Lives--;
 
-        if (LivesController.Instance.player_Lives > 0) { Invoke("RestartLevel", 1); }
+        if (LivesController.Instance.player_Lives > 0) { LivesController.Instance.lastPlayerDeath = new Vector2(transform.position.x, transform.position.y); Invoke("RestartLevel", 1); }
         else { if (LivesController.Instance != null) { Destroy(LivesController.Instance.gameObject); } Invoke("FirstLevel", 1); }
     }
     private void RestartLevel() { SceneManager.LoadScene(currentScene); }
