@@ -37,7 +37,10 @@ public class BossPlayer : MonoBehaviour
         velocity += transform.rotation * deltaVelocity;
         velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
         if (Input.GetAxis("Vertical") == 0)
-            velocity *= 0.99f;
+            {
+            Vector2 directionToCenter =( Vector2.zero - (Vector2)transform.position).normalized * 0.05f;
+            velocity = Vector2.Lerp(velocity, directionToCenter , 0.01f);
+            }
         rotation = Input.GetAxis("Horizontal");
     }
 

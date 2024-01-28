@@ -8,10 +8,13 @@ public class AstroidController : MonoBehaviour
     public float rotation = 10f;
     Transform player;
     public AudioClip breakSound;
+    BossController bossController;
     void OnEnable()
     {
         transform.localScale = Vector3.one * (Size/5.0f);
         player = GameObject.FindObjectOfType<BossPlayer>().transform;
+        bossController = GameObject.FindObjectOfType<BossController>();
+        bossController.AddAstroid();
     }
 
     void Update()
@@ -36,6 +39,7 @@ public class AstroidController : MonoBehaviour
             astroid2.GetComponent<AstroidController>().rotation = rotation-45;
         }
         Destroy(gameObject);
+        bossController.RemoveAstroid();
         AudioSource.PlayClipAtPoint(breakSound, transform.position);
     }
     
