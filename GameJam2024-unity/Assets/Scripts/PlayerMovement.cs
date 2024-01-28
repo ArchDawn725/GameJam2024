@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Exit")
         {
-            collision.GetComponent<Animator>().SetTrigger("Trigger");
+            if (collision.gameObject.GetComponent<Animator>() != null) { collision.GetComponent<Animator>().SetTrigger("Trigger"); }
             max_Velocity = level_End_Velocity;
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + level_End_Velocity.x, rigidbody2D.velocity.y + level_End_Velocity.y);
             Invoke("NextLevel", 1);
@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "BouncePad")
         {
-            collision.gameObject.GetComponent<Animator>().SetTrigger("Trigger");
+            if (collision.gameObject.GetComponent<Animator>() != null) { collision.gameObject.GetComponent<Animator>().SetTrigger("Trigger"); }     
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y + bounce_Pad_Velocity);
         }
     }
