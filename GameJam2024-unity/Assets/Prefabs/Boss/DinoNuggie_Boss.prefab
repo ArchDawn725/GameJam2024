@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5413506504885068184}
   - component: {fileID: 4113386839359717140}
   - component: {fileID: 6343275104965290481}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: DinoNuggie_Boss
-  m_TagString: DinoNuggie
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
