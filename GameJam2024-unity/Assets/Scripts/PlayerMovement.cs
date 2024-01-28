@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         health = MAX_HEALTH;
+        LivesController.Instance.UpdateUILives();
     }
     private void Update()
     {
@@ -100,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")) || capsuleCollider.IsTouchingLayers(LayerMask.GetMask("Hazard")))
             {
-                print("Hit");
+                UIController.Instance.UpdateHealth(health);
                 rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + hit_Velocity.x, rigidbody2D.velocity.y + hit_Velocity.y);
                 health--;
                 StartCoroutine(ImmunityTime());
@@ -123,13 +124,14 @@ public class PlayerMovement : MonoBehaviour
     private void RestartLevel() { SceneManager.LoadScene(currentScene); }
     private void NextLevel() {  SceneManager.LoadScene(currentScene + 1); }
     private void FirstLevel() { SceneManager.LoadScene(0); }
-    private void Heal() { health++; if (health > MAX_HEALTH) { health = MAX_HEALTH; } }
-    private void OneUp() { print("Life UP"); }
+    private void Heal() { health++; if (health > MAX_HEALTH) { health = MAX_HEALTH; } UIController.Instance.UpdateHealth(health); }
+    private void OneUp() { LivesController.Instance.player_Lives++; UIController.Instance.GainLife(); }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Exit")
         {
             collision.GetComponent<Animator>().SetTrigger("Trigger");
+            max_Velocity = level_End_Velocity;
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + level_End_Velocity.x, rigidbody2D.velocity.y + level_End_Velocity.y);
             Invoke("NextLevel", 1);
         }
