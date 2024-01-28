@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Gamescene-3.unity
     guid: c6a89720798e8f3499d798161e276e00
   - enabled: 1
+    path: Assets/Scenes/GameScene-4.unity
+    guid: 4324237022e320c4f8dd2e2ff34380c4
+  - enabled: 1
     path: Assets/Scenes/Boss_Scene.unity
     guid: 94f3cad7a3f94a14292cd7e88bfefc7d
   m_configObjects:
