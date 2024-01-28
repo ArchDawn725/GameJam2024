@@ -9,9 +9,11 @@ public class FireBall : MonoBehaviour
     [SerializeField] GameObject[] spawnables;
     [SerializeField] AudioSource explosion;
     private bool exploded;
+    CircleCollider2D circleCollider;
     private void Start()
     {
         target = FindObjectOfType<PlayerMovement>().transform.position;
+        circleCollider = GetComponent<CircleCollider2D>();
         animator = GetComponent<Animator>();
     }
     private void Update()
@@ -30,6 +32,7 @@ public class FireBall : MonoBehaviour
     }
     private void Explode()
     {
+        circleCollider.enabled = false;
         if (exploded) { return; }
         exploded = true;
         transform.GetChild(0).GetComponent<ParticleSystem>().Play();
