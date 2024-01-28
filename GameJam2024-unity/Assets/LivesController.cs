@@ -4,7 +4,7 @@ using UnityEngine.InputSystem.XR;
 public class LivesController : MonoBehaviour
 {
     public static LivesController Instance { get; private set; }
-    private void Awake() { Instance = this; }
+    private void Awake() { Instance = this; DontDestroyOnLoad(gameObject); }
     public int player_Lives = 5;
     public Vector2 lastPlayerDeath;
     [SerializeField] private GameObject oil;

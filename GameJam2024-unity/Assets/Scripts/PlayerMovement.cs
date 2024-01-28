@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
         LivesController.Instance.player_Lives--;
 
         if (LivesController.Instance.player_Lives > 0) { Invoke("RestartLevel", 1); }
-        else { Destroy(LivesController.Instance.gameObject); Invoke("FirstLevel", 1); }
+        else { if (LivesController.Instance != null) { Destroy(LivesController.Instance.gameObject); } Invoke("FirstLevel", 1); }
     }
     private void RestartLevel() { SceneManager.LoadScene(currentScene); }
     private void NextLevel() {  SceneManager.LoadScene(currentScene + 1); }
